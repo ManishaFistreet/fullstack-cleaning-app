@@ -2,17 +2,23 @@ version: "3.8"
 
 services:
   backend:
-    build:
-      context: ./backend
-    container_name: cleaning-backend
+    build: ./backend
     ports:
       - "5000:5000"
-    restart: always
+    env_file:
+      - ./backend/.env
+    networks:
+      - app-network
 
   frontend:
-    build:
-      context: ./frontend
-    container_name: cleaning-frontend
+    build: ./frontend
     ports:
-      - "4003:80"
-    restart: always
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
