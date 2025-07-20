@@ -1,24 +1,20 @@
-version: "3.8"
+version: '3.8'
 
 services:
   backend:
-    build: ./backend
+    build:
+      context: ./backend
     ports:
-      - "5000:5000"
+      - "4004:5000"
     env_file:
       - ./backend/.env
-    networks:
-      - app-network
+    restart: always
 
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
     ports:
-      - "80:80"
+      - "4003:80"
     depends_on:
       - backend
-    networks:
-      - app-network
-
-networks:
-  app-network:
-    driver: bridge
+    restart: always
