@@ -6,8 +6,8 @@ services:
       context: ./backend
     ports:
       - "4004:5000"
-    env_file:
-      - ./backend/.env
+    # env_file:
+    #   - ./backend/.env
     environment:
       - MONGO_URI=mongodb://localhost:27017/cleaning-app
       - JWT_SECRET=skjfhsd8723**!@YASDKjhfdas9823
